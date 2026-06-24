@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacSphere - Premium Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom soft neomorphic/embossed effect for the large background logo */
+        .apple-emboss {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 450px;
+            height: 450px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg') no-repeat center;
+            background-size: contain;
+            opacity: 0.04; /* Delicate, subtle blend into the gradient background */
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen overflow-hidden p-4">
+
+    <div class="w-full max-w-7xl h-[90vh] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col justify-between border border-gray-100">
+        
+        <header class="flex items-center justify-between px-12 py-6 bg-white z-10">
+            <div class="text-2xl font-bold text-gray-900 cursor-pointer nav-link" data-target="home">
+                MacSphere
+            </div>
+            
+            <nav class="flex items-center space-x-10 text-gray-600 font-medium text-sm">
+                <a href="#" class="nav-link text-black font-semibold hover:text-black transition" data-target="home">Home</a>
+                <a href="#" class="nav-link hover:text-black transition" data-target="mac">Mac</a>
+                <a href="#" class="nav-link hover:text-black transition" data-target="ipad">iPad</a>
+                <a href="#" class="nav-link hover:text-black transition" data-target="iphone">iPhone</a>
+                <div class="relative inline-flex items-center">
+                    <button id="search-btn" class="hover:text-black transition text-base pl-2">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <input id="headerSearch" type="search" placeholder="Search products..." class="hidden ml-2 rounded-md border border-gray-200 p-2 text-sm" />
+                </div>
+            </nav>
+            
+            <div class="flex items-center space-x-6 text-gray-700">
+                <button id="profile-btn" class="hover:text-black transition text-lg">
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <button id="cart-btn" class="flex items-center space-x-2 hover:text-black transition font-medium text-sm">
+                    <i class="fa-solid fa-shopping-bag text-lg"></i>
+                    <span>0</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="relative flex-1 bg-gradient-to-br from-white via-[#f0f3ff] to-[#e4ebff] px-16 flex items-center overflow-hidden">
+            
+            <div class="max-w-xl z-10">
+                <span class="text-blue-600 font-bold tracking-widest text-xs uppercase block mb-3">
+                    Premium Store
+                </span>
+                <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight leading-tight mb-4">
+                    Everything Apple <br> In One Place
+                </h1>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6 max-w-md">
+                    MacSphere is your all-in-one store for Apple products, offering MacBooks, iPads, iPhones, and accessories with premium quality and trusted service.
+                </p>
+                
+                <div class="flex items-center space-x-2 mb-8">
+                    <div class="flex text-blue-600 text-sm">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="text-gray-800 font-semibold text-sm pl-1">4.8</span>
+                    <span class="text-gray-400 text-xs">(Trusted by thousands of customers)</span>
+                </div>
+                
+                <div class="flex items-center space-x-6">
+                    <button id="shop-now" class="bg-[#1e5aff] hover:bg-blue-700 text-white font-medium text-sm px-8 py-3.5 rounded-xl shadow-lg shadow-blue-500/20 transition-all transform active:scale-95">
+                        Shop Now
+                    </button>
+                    <button id="browse-catalog" class="flex items-center space-x-2 text-gray-900 font-semibold text-sm hover:text-blue-600 transition group">
+                        <span>Browse Catalog</span>
+                        <i class="fa-solid fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="apple-emboss"></div>
+        </main>
+
+        <footer class="bg-white border-t border-gray-100 p-8">
+            <div class="max-w-6xl mx-auto grid grid-cols-4 gap-y-6 gap-x-4">
+                
+                <div class="flex items-start space-x-4 px-4">
+                    <div class="text-blue-600 text-2xl mt-1">
+                        <i class="fa-solid fa-wave-square"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm">Genuine Products</h4>
+                        <p class="text-gray-400 text-xs mt-0.5">100% authentic Apple products</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4 px-4 border-l border-gray-100">
+                    <div class="text-blue-600 text-2xl mt-1">
+                        <i class="fa-regular fa-shield-check"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm">Authorized Store</h4>
+                        <p class="text-gray-400 text-xs mt-0.5">Officially authorized seller</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4 px-4 border-l border-gray-100">
+                    <div class="text-blue-600 text-2xl mt-1">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm">Expert Support</h4>
+                        <p class="text-gray-400 text-xs mt-0.5">Here to help you anytime</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4 px-4 border-l border-gray-100">
+                    <div class="text-blue-600 text-2xl mt-1">
+                        <i class="fa-regular fa-credit-card"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm">Secure Payments</h4>
+                        <p class="text-gray-400 text-xs mt-0.5">Safe and encrypted checkout</p>
+                    </div>
+                </div>
+
+                <div class="col-span-4 border-t border-gray-100 my-1"></div>
+
+                <div class="flex items-start space-x-4 px-4">
+                    <div class="text-blue-600 text-2xl mt-1">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm">Free Shipping</h4>
+                        <p class="text-gray-400 text-xs mt-0.5">Orders over $50</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4 px-4 border-l border-gray-100">
+                    <div class="text-blue-600 text-2xl mt-1">
+                        <i class="fa-solid fa-rotate-left"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm">30-Day Returns</h4>
+                        <p class="text-gray-400 text-xs mt-0.5">Hassle-free returns</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4 px-4 border-l border-gray-100">
+                    <div class="text-blue-600 text-2xl mt-1">
+                        <i class="fa-regular fa-shield-shaded"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm">2-Year Warranty</h4>
+                        <p class="text-gray-400 text-xs mt-0.5">Peace of mind</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4 px-4 border-l border-gray-100">
+                    <div class="text-blue-600 text-2xl mt-1">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm">24/7 Support</h4>
+                        <p class="text-gray-400 text-xs mt-0.5">We're here to help</p>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            
+            // Handle active navbar state styling dynamically
+            $('.nav-link').on('click', function(e) {
+                e.preventDefault();
+                $('.nav-link').removeClass('text-black font-semibold').addClass('text-gray-600');
+                $(this).addClass('text-black font-semibold').removeClass('text-gray-600');
+                
+                let target = $(this).data('target');
+                console.log("Navigating to: " + target);
+            });
+
+            // Button Click Interactions
+            $('#shop-now').on('click', function() {
+                alert('Redirecting to the MacSphere storefront...');
+            });
+
+            $('#browse-catalog').on('click', function() {
+                alert('Opening product catalog details...');
+            });
+
+            $('#search-btn').on('click', function() {
+                console.log('Search interface activated.');
+            });
+
+            $('#profile-btn').on('click', function() {
+                console.log('Opening customer profile menu.');
+            });
+
+            $('#cart-btn').on('click', function() {
+                console.log('Opening shopping cart sidebar.');
+            });
+
+            // Header search toggle + broadcast
+            $('#search-btn').on('click', function(e) {
+                e.preventDefault();
+                const $inp = $('#headerSearch');
+                if ($inp.is(':visible')) {
+                    $inp.addClass('hidden').val('');
+                    $(document).trigger('globalSearch', ['']);
+                } else {
+                    $inp.removeClass('hidden').focus();
+                }
+            });
+
+            $('#headerSearch').on('input', function() {
+                const val = $(this).val();
+                $(document).trigger('globalSearch', [val]);
+                $('#searchInput').val(val).trigger('input');
+            });
+        });
+    </script>
+</body>
+</html>

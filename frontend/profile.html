@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Profile - MacSphere</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+  </head>
+  <body class="bg-gray-100 p-6">
+    <div class="w-full max-w-7xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+      <header class="flex items-center justify-between px-8 py-6 bg-white">
+        <div class="text-2xl font-bold text-gray-900">MacSphere</div>
+        <nav class="text-gray-600"><a href="home.html" class="text-sm font-medium">Home</a></nav>
+      </header>
+
+      <main class="p-6">
+        <div class="container my-5">
+          <div class="row">
+            <!-- Sidebar Summary -->
+            <div class="col-md-4">
+              <div class="glass-panel text-center">
+                <div class="position-relative d-inline-block mb-3">
+                  <img id="profileAvatar" src="https://placehold.co/120x120?text=Avatar" alt="Avatar" class="rounded-circle img-thumbnail" style="width: 120px; height: 120px; object-fit: cover; background: rgba(0,0,0,0.5); border: 2px solid var(--accent-blue);" />
+                </div>
+                <h4 id="profileName" class="mb-0">Loading...</h4>
+                <p id="profileEmail" class="text-secondary mb-2">...</p>
+                <div id="profileBadge" class="mb-3"></div>
+                <div class="list-group list-group-flush text-left glass-card mt-3">
+                  <a href="#tab-personal" class="list-group-item list-group-item-action bg-transparent text-gray-700 border-0 py-3 active-tab" onclick="switchTab('personal')">Personal Info</a>
+                  <a href="#tab-addresses" class="list-group-item list-group-item-action bg-transparent text-gray-700 border-0 py-3" onclick="switchTab('addresses')">Shipping Addresses</a>
+                  <a href="#tab-wishlist" class="list-group-item list-group-item-action bg-transparent text-gray-700 border-0 py-3" onclick="switchTab('wishlist')">Wishlist Organizer</a>
+                  <a href="#tab-orders" class="list-group-item list-group-item-action bg-transparent text-gray-700 border-0 py-3" onclick="switchTab('orders')">Order History</a>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Tab Contents -->
+            <div class="col-md-8">
+              <!-- Personal Info -->
+              <div id="personal-tab-content" class="glass-panel tab-content-block">
+                <h3>Personal Information</h3>
+                <hr>
+                <form id="profileForm">
+                  <div class="form-group row mt-4">
+                    <div class="col-md-12 text-center mb-3">
+                      <label for="avatar" class="btn btn-apple-secondary">Upload New Avatar</label>
+                      <input type="file" id="avatar" name="avatar" accept="image/*" class="d-none" />
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="firstName" class="text-secondary">First Name</label>
+                      <input type="text" id="firstName" name="fname" class="form-control form-control-apple" />
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="lastName" class="text-secondary">Last Name</label>
+                      <input type="text" id="lastName" name="lname" class="form-control form-control-apple" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="phone" class="text-secondary">Phone Number</label>
+                    <input type="text" id="phone" name="phone" class="form-control form-control-apple" />
+                  </div>
+                  <button type="submit" id="updateBtn" class="btn btn-apple mt-3">Save Changes</button>
+                </form>
+              </div>
+              
+              <!-- Rest of tabs preserved (addresses, wishlist, orders) -->
+              <div id="addresses-tab-content" class="glass-panel tab-content-block" style="display: none;">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h3>Shipping Addresses</h3>
+                  <button class="btn btn-sm btn-apple" data-toggle="modal" data-target="#addressModal">+ Add New</button>
+                </div>
+                <hr>
+                <div id="addressesList" class="row"></div>
+              </div>
+
+              <div id="wishlist-tab-content" class="glass-panel tab-content-block" style="display: none;">
+                <h3>Wishlist Organizer</h3>
+                <hr>
+                <div class="form-group mb-4">
+                  <label for="wishlistFilter" class="text-secondary">Filter by Organizer Category</label>
+                  <select id="wishlistFilter" class="form-control form-control-apple" style="max-width: 250px; height: auto;"></select>
+                </div>
+                <div id="wishlistList" class="row"></div>
+              </div>
+
+              <div id="orders-tab-content" class="glass-panel tab-content-block" style="display: none;">
+                <h3>Purchase History</h3>
+                <hr>
+                <div id="ordersList"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-panel mt-5">
+            <h3 class="mb-4">Recommended Apple Products</h3>
+            <div id="recommendationsList" class="row"></div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="bg-white border-t border-gray-100 p-6 text-center text-sm text-gray-500">© MacSphere</footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.16.1/sweetalert2.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/user.js"></script>
+  </body>
+</html>

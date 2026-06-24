@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacSphere - Sign In</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <div class="w-full max-w-3xl bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+        <header class="flex items-center justify-between px-8 py-6 bg-white">
+            <div class="text-2xl font-bold text-gray-900">MacSphere</div>
+            <nav class="flex items-center gap-4 text-gray-600">
+                <a href="home.html" class="text-sm font-medium">Home</a>
+                <a href="profile.html" id="profile-btn" class="text-sm font-medium">Profile</a>
+                <a href="register.html" id="registerNav" class="text-sm font-medium">Register</a>
+                <a href="login.html" id="authNavBtn" class="bg-[#1e5aff] text-white px-4 py-2 rounded-lg text-sm font-medium">Sign In</a>
+                <a href="dashboard.html" id="dashboardNavLink" class="hidden text-sm font-medium">Dashboard</a>
+            </nav>
+        </header>
+
+        <main class="p-8">
+            <div class="max-w-lg mx-auto text-center">
+                <div class="mb-6">
+                    <span class="text-5xl text-gray-900"></span>
+                    <h2 class="text-2xl font-extrabold mt-3 text-gray-900">Sign In to MacSphere</h2>
+                    <p class="text-gray-700 mt-1">Enter your credentials to access your account</p>
+                </div>
+
+                <form id="loginForm" class="space-y-4 text-left">
+                    <div>
+                        <label class="text-sm text-gray-800 uppercase font-semibold">Email Address</label>
+                        <input id="email" type="email" required class="mt-2 w-full rounded-lg border border-gray-200 p-3 text-gray-900 placeholder-gray-400" placeholder="name@example.com">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-800 uppercase font-semibold">Password</label>
+                        <input id="password" type="password" required class="mt-2 w-full rounded-lg border border-gray-200 p-3 text-gray-900 placeholder-gray-400" placeholder="••••••••">
+                    </div>
+                    <button type="submit" id="login" class="w-full bg-[#1e5aff] text-white py-3 rounded-lg font-medium">Sign In</button>
+                </form>
+
+                <p class="text-gray-700 mt-4">Don't have an account? <a href="register.html" class="text-blue-600 font-semibold">Create one</a></p>
+            </div>
+        </main>
+
+        <footer class="bg-white border-t border-gray-100 p-6 text-center text-sm text-gray-500">© MacSphere</footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.16.1/sweetalert2.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/user.js"></script>
+</body>
+</html>

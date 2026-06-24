@@ -1,0 +1,173 @@
+<header class="flex items-center justify-between px-12 py-6 bg-white z-10 border-b border-gray-100">
+  <div class="text-2xl font-bold text-gray-900 cursor-pointer nav-link" data-target="home">
+    MacSphere
+  </div>
+
+  <nav class="flex items-center space-x-10 text-gray-600 font-medium text-sm">
+    <a href="home.html" class="nav-link text-black font-semibold hover:text-black transition" data-target="home">Home</a>
+    <a href="#" class="nav-link hover:text-black transition" data-target="mac">Mac</a>
+    <a href="#" class="nav-link hover:text-black transition" data-target="ipad">iPad</a>
+    <a href="#" class="nav-link hover:text-black transition" data-target="iphone">iPhone</a>
+    <div class="relative inline-flex items-center">
+      <button id="search-btn" class="hover:text-black transition text-base pl-2" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <input id="headerSearch" type="search" placeholder="Search products..." class="hidden ml-2 rounded-md border border-gray-200 p-2 text-sm" />
+    </div>
+  </nav>
+
+  <div class="flex items-center space-x-6 text-gray-700">
+    <button id="profile-btn" class="hover:text-black transition text-lg" aria-label="Profile">
+      <i class="fa-regular fa-user"></i>
+    </button>
+    <button id="cart-btn" class="flex items-center space-x-2 hover:text-black transition font-medium text-sm" aria-label="Cart">
+      <i class="fa-solid fa-shopping-bag text-lg"></i>
+      <span>0</span>
+    </button>
+    <a href="register.html" id="registerNav" class="hover:text-black transition text-sm font-medium">Register</a>
+    <a href="login.html" id="authNavBtn" class="bg-[#1e5aff] text-white px-4 py-2 rounded-lg text-sm font-medium">Sign In</a>
+    <a href="dashboard.html" id="dashboardNavLink" class="hidden hover:text-black transition text-sm font-medium">Dashboard</a>
+  </div>
+</header>
+
+<script>
+$(document).ready(function() {
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    if (cart.length > 0) {
+        $('#cart-btn span').text(cart.reduce((sum, item) => sum + item.quantity, 0));
+    }
+
+    $('#search-btn').on('click', function(e) {
+      e.preventDefault();
+      const $inp = $('#headerSearch');
+      if ($inp.is(':visible')) {
+        $inp.addClass('hidden').val('');
+        $(document).trigger('globalSearch', ['']);
+      } else {
+        $inp.removeClass('hidden').focus();
+      }
+    });
+
+    $('#headerSearch').on('input', function() {
+      const val = $(this).val();
+      $(document).trigger('globalSearch', [val]);
+      $('#searchInput').val(val).trigger('input');
+    });
+
+    const token = sessionStorage.getItem('token');
+    const role = (sessionStorage.getItem('role') || '').replace(/"/g, '').toLowerCase();
+
+    if (token) {
+        $('#registerNav').hide();
+        $('#dashboardNavLink').toggle(role === 'admin');
+        $('#authNavBtn').text('Sign Out').removeClass('bg-[#1e5aff] text-white').addClass('bg-white text-gray-900 border border-gray-200').attr('href', '#').on('click', function(e) {
+            e.preventDefault();
+            sessionStorage.clear();
+            localStorage.removeItem('cart');
+            window.location.href = 'login.html';
+        });
+    } else {
+        $('#registerNav').show();
+        $('#dashboardNavLink').hide();
+        $('#authNavBtn').text('Sign In').removeClass('bg-white text-gray-900 border border-gray-200').addClass('bg-[#1e5aff] text-white').attr('href', 'login.html');
+    }
+});
+</script><nav class="navbar navbar-expand-lg navbar-dark navbar-apple sticky-top">
+  <div class="container">
+    <a class="navbar-brand navbar-brand-apple" href="home.html">
+      <span style="font-size: 22px;"></span> MacSphere
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      style="border: none;"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto align-items-center" style="gap: 12px;">
+        <li class="nav-item">
+          <a class="nav-link nav-link-apple" href="home.html">Shop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-apple" href="cart.html">
+            Cart <span class="badge badge-pill badge-primary" id="cartCountBadge" style="display: none; background: var(--accent-blue);">0</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-apple" href="profile.html">Profile</a>
+        </li>
+        <li class="nav-item" id="dashboardNavLink" style="display: none;">
+          <a class="nav-link nav-link-apple" href="dashboard.html">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-apple" href="register.html" id="registerNav">Register</a>
+        </li>
+        <li class="nav-item" id="authNav">
+          <a class="btn btn-sm btn-apple" href="login.html" id="authNavBtn">Sign In</a>
+        </li>
+        <li class="nav-item">
+          <div class="d-flex align-items-center" style="gap:8px;">
+            <button id="search-btn" class="btn btn-sm btn-apple" aria-label="Search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <input id="headerSearch" class="form-control" placeholder="Search products..." style="display:none; width:220px;" />
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script>
+$(document).ready(function() {
+    // Update cart badge
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    if (cart.length > 0) {
+        $('#cartCountBadge').text(cart.reduce((sum, item) => sum + item.quantity, 0)).show();
+    }
+    // Header search toggle + broadcast
+    $('#search-btn').on('click', function(e) {
+      e.preventDefault();
+      const $inp = $('#headerSearch');
+      if ($inp.is(':visible')) {
+        $inp.hide().val('');
+        $inp.trigger('input');
+      } else {
+        $inp.show().focus();
+      }
+    });
+
+    $('#headerSearch').on('input', function() {
+      // Broadcast a simple event for pages to consume (value in detail)
+      const val = $(this).val();
+      $(document).trigger('globalSearch', [val]);
+      // Also mirror to any #searchInput if present
+      $('#searchInput').val(val).trigger('input');
+    });
+
+    // Check auth status
+    const token = sessionStorage.getItem('token');
+    const role = (sessionStorage.getItem('role') || '').replace(/"/g, '').toLowerCase();
+    
+    if (token) {
+        $('#registerNav').hide();
+      $('#dashboardNavLink').toggle(role === 'admin');
+      $('#authNavBtn').text('Sign Out').removeClass('btn-apple').addClass('btn-apple-secondary').attr('href', '#').on('click', function(e) {
+            e.preventDefault();
+            sessionStorage.clear();
+            localStorage.removeItem('cart');
+            window.location.href = 'login.html';
+        });
+    } else {
+      $('#registerNav').show();
+      $('#dashboardNavLink').hide();
+      $('#authNavBtn').text('Sign In').removeClass('btn-apple-secondary').addClass('btn-apple').attr('href', 'login.html');
+    }
+});
+</script>
